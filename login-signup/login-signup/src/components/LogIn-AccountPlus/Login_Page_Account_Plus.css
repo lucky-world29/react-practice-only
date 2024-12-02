@@ -1,0 +1,146 @@
+/* General styling */
+body {
+    margin: 0;
+    font-family: "Arial", sans-serif;
+    background: #ffe3e9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Login Container */
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  /* Left Illustration */
+  .login-left {
+    flex: 1;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-illustration {
+    width: 90%;
+    max-width: 300px;
+  }
+  
+  /* Right Login Form */
+  .login-right {
+    flex: 1;
+    padding: 30px;
+  }
+  
+  .login-title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .login-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .login-input:focus {
+    outline: none;
+    border-color: #ff6f61;
+  }
+  
+  .forgot-password {
+    text-align: right;
+    margin-bottom: 20px;
+  }
+  
+  .forgot-password a {
+    font-size: 12px;
+    color: #ff6f61;
+    text-decoration: none;
+  }
+  
+  .login-button {
+    width: 100%;
+    padding: 12px;
+    background: #ff6f61;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .login-button:hover {
+    background: #e6584f;
+  }
+  
+  .divider {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 14px;
+    color: #888;
+  }
+  
+  .social-login {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .social-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 30%;
+  }
+  
+  .social-button.google {
+    background: #ea4335;
+    color: #fff;
+  }
+  
+  .social-button.facebook {
+    background: #1877f2;
+    color: #fff;
+  }
+  
+  .social-button.apple {
+    background: #000;
+    color: #fff;
+  }
+  
+  .signup-link {
+    margin-top: 15px;
+    text-align: center;
+  }
+  
+  .signup-link a {
+    color: #ff6f61;
+    text-decoration: none;
+  }
+  
