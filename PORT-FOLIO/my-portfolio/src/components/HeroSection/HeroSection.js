@@ -59,7 +59,7 @@ const HeroSection = () => {
             </h1>
             <p className="lead">SOFTWARE DEVELOPER</p>
             <div className="mt-4">
-              <a
+              {/* <a
                 href="https://www.google.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -67,12 +67,15 @@ const HeroSection = () => {
               >
                 <i className="material-icons me-2">work</i>
                 My Work
-              </a>
-              <button className="btn btn-outline-secondary btn-3d">
+              </a> */}
+
+              {/*  */}
+              
+              {/* <button className="btn btn-outline-secondary btn-3d">
                 <i className="material-icons me-2">person_add_alt</i>
                 Connect
-              </button>
-            </div>
+              </button> */}
+            </div> 
           </div>
         </div>
       </div>

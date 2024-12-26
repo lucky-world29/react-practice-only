@@ -6,9 +6,12 @@ const Footer = () => {
   return (
     <footer className="footer py-4">
       <div className="container">
-        <h5 className="footer-title">Footer Title</h5>
+        <h5 className="footer-title">Aloha</h5>
         <p className="footer-text">
-          Some text about your website or contact details.
+          <pre>
+        Hi there! I'm Lucky , and I specialize in delivering high-quality solutions tailored to your unique needs. <br />
+        responsive designs, or scalable backend systems, I bring creativity and reliability to every project.
+        </pre>
         </p>
         <div className="footer-icons">
           <a href="https://www.facebook.com/abinash.behera.9674227" className="icon-link" aria-label="Facebook">

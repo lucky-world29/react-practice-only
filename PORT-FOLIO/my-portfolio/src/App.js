@@ -1,63 +1,90 @@
-// import React from "react";
-// import Navbar from './components/Navbar/Navbar'; // Correct for default export
+
+// import React, { useRef } from "react";
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import Navbar from "./components/Navbar/Navbar";
 // import HeroSection from "./components/HeroSection/HeroSection";
 // import About from "./components/About/About";
 // import Services from "./components/Services/Services";
-// // import Portfolio from "./components/Portfolio/Portfolio";
 // import Blog from "./components/Blog/Blog";
+// import Portfolio from "./components/Portfolio/Portfolio";
 // import Footer from "./components/Footer/Footer";
+// import Contact from "./components/About/Contact";
 
 // function App() {
-//   return (
-//     <div>
-//       <Navbar />
-//       <HeroSection />
-//      <About />
-//       <Services />
-//      {/* <Portfolio /> */}
-//        <Blog />
-//       <Footer />
-//     </div>
-//   );
+//     const footerRef = useRef(null);
+
+//     return (
+//         <Router>
+//             <div>
+//                 <Navbar />
+//                 <Routes>
+//                     <Route path="/blog" element={<Blog />} />
+//                 </Routes>
+//                 <HeroSection />
+//                 <About footerRef={footerRef} />
+//                 <Services />
+//                 <Portfolio />
+//                 <Contact />
+//                 <div ref={footerRef}>
+//                     <Footer />
+//                 </div>
+//             </div>
+//         </Router>
+//     );
 // }
 
 // export default App;
 
-import React from "react";
+import React, { useRef } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar"; // Correct for default export
+import Navbar from "./components/Navbar/Navbar";
 import HeroSection from "./components/HeroSection/HeroSection";
 import About from "./components/About/About";
 import Services from "./components/Services/Services";
 import Blog from "./components/Blog/Blog";
 import Portfolio from "./components/Portfolio/Portfolio";
 import Footer from "./components/Footer/Footer";
-import Contact from "./components/About/Contact"; // Assuming a Contact component exists
+import Contact from "./components/About/Contact";
 
 function App() {
-  return (
-    <Router>
-      <div>
-        <Navbar />
-        <Routes>
-          {/* Define routes for each section */}
-          {/* <Route path="/" element={<HeroSection />} /> */}
-          {/* <Route path="/about" element={<About />} /> */}
-          {/* <Route path="/services" element={<Services />} /> */}
-          <Route path="/blog" element={<Blog />} />
-          {/* <Route path="/contact" element={<Contact />} /> */}
-        </Routes>
-             <HeroSection />
-              <About />
-              <Services />
-            <Portfolio />
-               {/* <Blog /> */}
-              <Contact/>
-               <Footer />  
-      </div>
-    </Router>
-  );
+    const footerRef = useRef(null);
+
+    return (
+        <Router>
+            <div>
+                <Routes>
+                    {/* Route for Blog page */}
+                    <Route 
+                        path="/blog" 
+                        element={
+                            <>
+                                <Navbar />
+                                <Blog />
+                                <Footer />
+                            </>
+                        } 
+                    />
+                    {/* Other routes for other pages */}
+                    <Route 
+                        path="/" 
+                        element={
+                            <>
+                                <Navbar />
+                                <HeroSection />
+                                <About footerRef={footerRef} />
+                                <Services />
+                                <Portfolio />
+                                <Contact />
+                                <div ref={footerRef}>
+                                    <Footer />
+                                </div>
+                            </>
+                        } 
+                    />
+                </Routes>
+            </div>
+        </Router>
+    );
 }
 
 export default App;
-
