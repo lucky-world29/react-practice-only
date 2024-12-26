@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import "./Blog.css";
 
 const blogPosts = [
@@ -29,6 +30,8 @@ const blogPosts = [
 ];
 
 const Blog = () => {
+  const location = useLocation();
+
   return (
     <section className="blog py-5" id="blog">
       <div className="container">
@@ -41,14 +44,16 @@ const Blog = () => {
                   <h5 className="card-title">{post.title}</h5>
                   <p className="card-text">{post.description}</p>
                   <p className="text-muted small">{post.date}</p>
-                  <a
-                    href={post.link}
-                    className="btn btn-primary"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Read More
-                  </a>
+                  {location.pathname !== post.link && ( // Hide the link if on the blog page
+                    <a
+                      href={post.link}
+                      className="btn btn-primary"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Read More
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

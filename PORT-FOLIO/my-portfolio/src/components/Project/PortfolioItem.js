@@ -1,5 +1,5 @@
 import React from "react";
-import "./Portfolio.css";
+import "./Project.css";
 
 const PortfolioItem = ({ title, description, image, link }) => {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import PortfolioItem from "./PortfolioItem";
-import "./Portfolio.css";
+import "./Project.css";
 
 const projects = [
   {
@@ -12,7 +12,7 @@ const projects = [
   {
     title: "Project Two",
     description: "A cutting-edge application built with modern technology.",
-    image: "https://via.placeholder.com/300x200",
+    image: "https://via.placeholder.com/300x200", 
     link: "#",
   },
   {
@@ -23,7 +23,7 @@ const projects = [
   },
 ];
 
-const Portfolio = () => {
+const Project = () => {
   return (
     <section className="portfolio py-5" id="portfolio">
       <div className="container">
@@ -51,4 +51,4 @@ const Portfolio = () => {
   );
 };
 
-export default Portfolio;
+export default Project;
