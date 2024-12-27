@@ -8,10 +8,11 @@ const Footer = () => {
       <div className="container">
         <h5 className="footer-title">Aloha</h5>
         <p className="footer-text">
-          <pre>
-        Hi there! I'm Lucky , and I specialize in delivering high-quality solutions tailored to your unique needs. <br />
-        responsive designs, or scalable backend systems, I bring creativity and reliability to every project.
-        </pre>
+      
+        Hi, I’m Lucky—a software developer who thrives at the intersection of creativity and technology.
+<br/>With a solid foundation in mathematics and expertise in Java, React.js, and Spring Boot, I specialize in building user-centric solutions that inspire and perform.
+<br/>From crafting intuitive, responsive designs to engineering scalable backend systems, I bring innovation, precision, and passion to every line of code.
+<br/>Let’s turn ideas into impactful digital experiences together!
         </p>
         <div className="footer-icons">
           <a href="https://www.facebook.com/abinash.behera.9674227" className="icon-link" aria-label="Facebook">
