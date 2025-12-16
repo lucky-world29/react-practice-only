@@ -1,0 +1,71 @@
+# ===============================
+# Node / npm / yarn
+# ===============================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ===============================
+# Build outputs
+# ===============================
+build/
+dist/
+out/
+
+# ===============================
+# Environment variables
+# ===============================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ===============================
+# React / Vite / CRA
+# ===============================
+.vite/
+.cache/
+.eslintcache
+
+# ===============================
+# Logs
+# ===============================
+logs
+*.log
+
+# ===============================
+# OS generated files
+# ===============================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ===============================
+# Editor / IDE
+# ===============================
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# ===============================
+# TypeScript
+# ===============================
+*.tsbuildinfo
+
+# ===============================
+# Testing
+# ===============================
+coverage/
+
+# ===============================
+# Misc
+# ===============================
+*.tgz
+*.swp
