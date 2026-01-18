@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<h1>WelCome to React 18 || 19</h1>);
+
+        ReactDOM.render(
+            <h2>This is React 17 using CDN links</h2>,
+            document.getElementById('root2')
+        );
+
+    </script>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+    <div id="root2" style="font-size: xx-large;">
+
+    </div>
+    <noscript>
+        You need to enable JavaScript to run this app.
+    </noscript>
+</body>
+</html>

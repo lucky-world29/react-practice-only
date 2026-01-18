@@ -1,0 +1,227 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red255\green255\blue255;\red0\green0\blue0;
+\red144\green1\blue18;\red19\green118\blue70;\red107\green0\blue1;\red220\green0\blue5;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c100000;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;
+\cssrgb\c63922\c8235\c8235;\cssrgb\c3529\c52549\c34510;\cssrgb\c50196\c0\c0;\cssrgb\c89804\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh14400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs70 \cf0  Summary\
+	- XMLHttpRequest\
+	- fetch()\
+	- axios \
+\
+	Connecting with API and fetching data [ Fakestore ]\
+	\
+	
+\f1\b0 - Fakestore provides a REST API service \
+	- Representational State Transfer.\
+	- Application Programming Interface\
+	- REST communication\
+		\
+			Consumer sends query request => Provider sends JSON response\
+\
+	
+\f0\b API Routes [ Fakestore ]\
+	\
+	
+\f1\b0 GET			/products				                       [ \{ \}, \{ \} ]      all products\
+	GET       /products/categories                 [ \'93 \'94 ]            all categories\
+	GET       /products/category/electronics  [ \{ \}, \{ \} ]      products of specific 											                                              category\
+	GET       /products/id                               \{ \}                specific product by ID.\
+\
+	Syntax:\
+		 https://fakestoreapi.com/products\
+\
+	 Data:\
+				\{\
+					id: number,\
+					title: string,\
+					image: string,\
+					price: number,\
+					description: string,\
+					category: string,\
+					rating: \{ rate: number, count: number \}\
+				\}\
+	
+\f0\b \
+	  Plan UI with Google Stitch:\
+						\
+					
+\f1\b0 - Create a shopping Home Screen \
+					- Navbar at the top in header with brand name, search bar and short \
+					  cut icons.\
+					- Featured products in section.\
+					- Featured products in cards 4 x 4 \
+					- Filter by category, rating and price range in left panel of section\
+\
+
+\f0\b 	Style Binding in React:\
+		
+\f1\b0 - You can configure inline styles to any JSX element using \'93style\'94 property.\
+		- Style will accept dynamic object. \
+		\
+						<div  style=\{ \{ \} \}> </div>\
+\
+						\{ \}  outer block is react binding \
+						\{ \}  inner block is object for style. \
+\
+		- Style have property and value.\
+		- Style properties are defined in camel case. \
+		- Style values are defined string format. \
+\
+				background-color	       backgroundColor \
+				text-align                      textAlign \
+			    font-size                       fontSize    etc..\
+\
+		\
+		  Syntax: React\
+				 <div  style=\{ \{ backgroundColor: \'91red\'92, color: \'91white\'92 \} \}>\
+
+\f0\b \
+		  
+\f1\b0 Syntax: HTML\
+				<div style=\'93background-color:red; color:white\'94> \
+\
+ Ex: fakestore.jsx\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  axios \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "axios"\cf0 \strokec4 ;\cb1 \
+\cf2 \cb3 \strokec2 import\cf0 \strokec4  \{ useEffect, useState \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "react"\cf0 \cb1 \strokec4 \
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  Fakestore()\{\cb1 \
+\
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [products, setProducts] = useState([\{id:\cf6 \cb3 \strokec6 0\cf0 \cb3 \strokec4 , title:\cf2 \strokec2 null\cf0 \strokec4 , price:\cf6 \cb3 \strokec6 0\cf0 \cb3 \strokec4 , description:\cf2 \strokec2 null\cf0 \strokec4 , category:\cf2 \strokec2 null\cf0 \strokec4 , image:\cf2 \strokec2 null\cf0 \strokec4 , rating:\{rate:\cf6 \cb3 \strokec6 0\cf0 \cb3 \strokec4 , count:\cf6 \cb3 \strokec6 0\cf0 \cb3 \strokec4 \}\}]);\cb1 \
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [categories, setCategories] = useState([]);\cb1 \
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  LoadProducts(url)\{\cb1 \
+\cb3         axios.get(url)\cb1 \
+\cb3         .then(response\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\cb3              setProducts(response.data);\cb1 \
+\cb3         \})\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  LoadCategories()\{\cb1 \
+\cb3         axios.get(\cf5 \strokec5 `https://fakestoreapi.com/products/categories`\cf0 \strokec4 )\cb1 \
+\cb3         .then(response\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\cb3             response.data.unshift(\cf5 \strokec5 'all'\cf0 \strokec4 );\cb1 \
+\cb3             setCategories(response.data);\cb1 \
+\cb3         \})\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     useEffect(()\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\
+\cb3          LoadProducts(\cf5 \strokec5 `https://fakestoreapi.com/products`\cf0 \strokec4 );\cb1 \
+\cb3          LoadCategories();\cb1 \
+\
+\cb3     \},[])\cb1 \
+\
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "container-fluid"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3             \cf7 \strokec7 <header\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "d-flex align-items-center justify-content-between p-2 bg-light"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 <div>\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \strokec7 <span\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "bi bi-bag fs-4 fw-bold text-dark"\cf7 \strokec7 ></span>\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \strokec7 <span\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "fs-4 mx-2 fw-bold"\cf7 \strokec7 >\cf0 \strokec4 Shopping.\cf7 \strokec7 </span>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 <div>\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "input-group"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 <input\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "form-control"\cf0 \strokec4  \cf8 \cb3 \strokec8 type\cf0 \cb3 \strokec4 =\cf5 \strokec5 "text"\cf0 \strokec4  \cf8 \cb3 \strokec8 placeholder\cf0 \cb3 \strokec4 =\cf5 \strokec5 "Search Shopping.com"\cf0 \strokec4  \cf7 \strokec7 />\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 <button\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "btn btn-warning bi bi-search"\cf7 \strokec7 ></button>\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 <div>\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \strokec7 <button\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "btn bi bi-person"\cf7 \strokec7 ></button>\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \strokec7 <button\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "btn mx-2 bi bi-heart"\cf7 \strokec7 ></button>\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \strokec7 <button\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "btn bi bi-cart4"\cf7 \strokec7 ></button>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3             \cf7 \strokec7 </header>\cf0 \cb1 \strokec4 \
+\cb3             \cf7 \strokec7 <section\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "row mt-2"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 <nav\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "col-2"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                   \cb1 \
+\cb3                    \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "bg-light p-3"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                          \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "d-flex my-3 justify-content-between"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \strokec7 <span\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "text-primary"\cf7 \strokec7 >\cf0 \strokec4 Filters\cf7 \strokec7 </span>\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \strokec7 <span\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "text-primary"\cf7 \strokec7 >\cf0 \strokec4 Clear All\cf7 \strokec7 </span>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "mt-3"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 <label\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "form-label fw-bold"\cf7 \strokec7 >\cf0 \strokec4 Category\cf7 \strokec7 </label>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 <div>\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \strokec7 <select\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "form-select"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                               \cf2 \strokec2 \{\cf0 \cb1 \strokec4 \
+\cb3                                 categories.map(category\cf2 \strokec2 =>\cf0 \cb1 \strokec4 \
+\cb3                                     \cf7 \strokec7 <option\cf0 \strokec4  \cf8 \cb3 \strokec8 key\cf0 \cb3 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 category\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \cb3 \strokec8 value\cf0 \cb3 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 category\cf2 \strokec2 \}\cf7 \strokec7 >\cf2 \strokec2 \{\cf0 \strokec4 category.toUpperCase()\cf2 \strokec2 \}\cf7 \strokec7 </option>\cf0 \cb1 \strokec4 \
+\cb3                                 )\cb1 \
+\cb3                               \cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \strokec7 </select>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "mt-3"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 <label\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "form-label fw-bold"\cf7 \strokec7 >\cf0 \strokec4 Choose Categories\cf7 \strokec7 </label>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 <div>\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \strokec7 <ul\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "list-unstyled"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                               \cf2 \strokec2 \{\cf0 \cb1 \strokec4 \
+\cb3                                  categories.map(category\cf2 \strokec2 =>\cf0 \cb1 \strokec4 \
+\cb3                                     \cf7 \strokec7 <li\cf0 \strokec4  \cf8 \cb3 \strokec8 style\cf0 \cb3 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 \{fontSize:\cf5 \strokec5 '13px'\cf0 \strokec4 \}\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "my-2"\cf0 \strokec4  \cf8 \cb3 \strokec8 key\cf0 \cb3 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 category\cf2 \strokec2 \}\cf7 \strokec7 >\cf0 \strokec4  \cf7 \strokec7 <input\cf0 \strokec4  \cf8 \cb3 \strokec8 type\cf0 \cb3 \strokec4 =\cf5 \strokec5 "checkbox"\cf0 \strokec4  \cf7 \strokec7 />\cf0 \strokec4  \cf7 \strokec7 <label>\cf0 \strokec4  \cf2 \strokec2 \{\cf0 \strokec4 category.toUpperCase()\cf2 \strokec2 \}\cf0 \strokec4  \cf7 \strokec7 </label>\cf0 \strokec4  \cf7 \strokec7 </li>\cf0 \cb1 \strokec4 \
+\cb3                                  )\cb1 \
+\cb3                               \cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \strokec7 </ul>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "mt-4"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \strokec7 <label\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "form-label fw-bold"\cf7 \strokec7 >\cf0 \strokec4 Price Range\cf7 \strokec7 </label>\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \strokec7 <input\cf0 \strokec4  \cf8 \cb3 \strokec8 type\cf0 \cb3 \strokec4 =\cf5 \strokec5 "range"\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "form-range"\cf0 \strokec4  \cf7 \strokec7 />\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "mt-4"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \strokec7 <label\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "form-label fw-bold"\cf7 \strokec7 >\cf0 \strokec4 Ratings\cf7 \strokec7 </label>\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \strokec7 <ul\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "list-unstyled"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                                 \cf7 \strokec7 <li>\cf0 \strokec4  4 \cf7 \strokec7 <span\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "bi bi-star-fill text-warning"\cf7 \strokec7 ></span>\cf0 \strokec4  \cf7 \strokec7 <span\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "bi bi-star-fill text-warning"\cf7 \strokec7 ></span>\cf0 \strokec4  \cf7 \strokec7 <span\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "bi bi-star-fill text-warning"\cf7 \strokec7 ></span>\cf0 \strokec4  \cf7 \strokec7 <span\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "bi bi-star-fill text-warning"\cf7 \strokec7 ></span>\cf0 \strokec4  \cf7 \strokec7 </li>\cf0 \cb1 \strokec4 \
+\cb3                                 \cf7 \strokec7 <li\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "my-2"\cf7 \strokec7 >\cf0 \strokec4  3 \cf7 \strokec7 <span\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "bi bi-star-fill text-warning"\cf7 \strokec7 ></span>\cf0 \strokec4  \cf7 \strokec7 <span\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "bi bi-star-fill text-warning"\cf7 \strokec7 ></span>\cf0 \strokec4  \cf7 \strokec7 <span\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "bi bi-star-fill text-warning"\cf7 \strokec7 ></span>\cf0 \strokec4   \cf7 \strokec7 </li>\cf0 \cb1 \strokec4 \
+\cb3                                 \cf7 \strokec7 <li>\cf0 \strokec4  2 \cf7 \strokec7 <span\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "bi bi-star-fill text-warning"\cf7 \strokec7 ></span>\cf0 \strokec4  \cf7 \strokec7 <span\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "bi bi-star-fill text-warning"\cf7 \strokec7 ></span>\cf0 \strokec4   \cf7 \strokec7 </li>\cf0 \cb1 \strokec4 \
+\cb3                                 \cb1 \
+\cb3                             \cf7 \strokec7 </ul>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                    \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 </nav>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 <main\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "col-10 d-flex overflow-auto flex-wrap"\cf0 \strokec4  \cf8 \cb3 \strokec8 style\cf0 \cb3 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 \{height:\cf5 \strokec5 '500px'\cf0 \strokec4 \}\cf2 \strokec2 \}\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                     \cf2 \strokec2 \{\cf0 \cb1 \strokec4 \
+\cb3                         products.map(product\cf2 \strokec2 =>\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \cb3 \strokec8 key\cf0 \cb3 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 product.id\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "card m-2 p-2"\cf0 \strokec4  \cf8 \cb3 \strokec8 style\cf0 \cb3 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 \{width:\cf5 \strokec5 '200px'\cf0 \strokec4 \}\cf2 \strokec2 \}\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                                 \cf7 \strokec7 <img\cf0 \strokec4  \cf8 \cb3 \strokec8 src\cf0 \cb3 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 product.image\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "card-img-top"\cf0 \strokec4  \cf8 \cb3 \strokec8 height\cf0 \cb3 \strokec4 =\cf5 \strokec5 "100"\cf0 \strokec4  \cf7 \strokec7 />\cf0 \cb1 \strokec4 \
+\cb3                                 \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "card-header"\cf0 \strokec4  \cf8 \cb3 \strokec8 style\cf0 \cb3 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 \{height:\cf5 \strokec5 '120px'\cf0 \strokec4 \}\cf2 \strokec2 \}\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                                     \cf2 \strokec2 \{\cf0 \strokec4 product.title\cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                                 \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                                 \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "card-body"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                                     \cf7 \strokec7 <dl>\cf0 \cb1 \strokec4 \
+\cb3                                         \cf7 \strokec7 <dt>\cf0 \strokec4 Price\cf7 \strokec7 </dt>\cf0 \cb1 \strokec4 \
+\cb3                                         \cf7 \strokec7 <dd>\cf2 \strokec2 \{\cf0 \strokec4 product.price\cf2 \strokec2 \}\cf7 \strokec7 </dd>\cf0 \cb1 \strokec4 \
+\cb3                                         \cf7 \strokec7 <dt>\cf0 \strokec4 Rating\cf7 \strokec7 </dt>\cf0 \cb1 \strokec4 \
+\cb3                                         \cf7 \strokec7 <dd>\cf2 \strokec2 \{\cf0 \strokec4 product.rating.rate\cf2 \strokec2 \}\cf0 \strokec4  \cf7 \strokec7 <span\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "bi bi-star-fill text-success"\cf7 \strokec7 ></span>\cf0 \strokec4  \cf7 \strokec7 </dd>\cf0 \cb1 \strokec4 \
+\cb3                                     \cf7 \strokec7 </dl>\cf0 \cb1 \strokec4 \
+\cb3                                 \cf7 \strokec7 </div>\cf0 \strokec4           \cb1 \
+\cb3                                 \cf7 \strokec7 <div\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "card-footer"\cf7 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                                     \cf7 \strokec7 <button\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "btn w-100 btn-warning bi bi-cart4"\cf7 \strokec7 >\cf0 \strokec4  Add to Cart\cf7 \strokec7 </button>\cf0 \cb1 \strokec4 \
+\cb3                                 \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                         )\cb1 \
+\cb3                     \cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \strokec7 </main>\cf0 \cb1 \strokec4 \
+\cb3             \cf7 \strokec7 </section>\cf0 \cb1 \strokec4 \
+\cb3         \cf7 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 	 \
+\
+\
+\
+\
+\
+\
+\
+\
+	}

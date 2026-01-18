@@ -1,0 +1,279 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red255\green255\blue255;\red0\green0\blue0;
+\red144\green1\blue18;\red107\green0\blue1;\red220\green0\blue5;\red19\green118\blue70;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c100000;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;
+\cssrgb\c63922\c8235\c8235;\cssrgb\c50196\c0\c0;\cssrgb\c89804\c0\c0;\cssrgb\c3529\c52549\c34510;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh14400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs70 \cf0   	Binding Array Type\
+	
+\f1\b0 - Array declaration and memory assignment is same as Javascript.\
+			a) [ ] meta character\
+			b) Array() constructor \
+	\
+		Syntax:\
+				const [data] = useState([ 10, 20, 30 ]);\
+				const [data] = useState(new Array(\'93A\'94, \'93B\'94));\
+\
+	- You can read elements from array by using following methods\
+				a) forEach()		]\
+				b) map()				]    can read all elements from array\
+				c) toString()		]\
+				d) slice()\
+				e) find()\
+				f) filter()    etc.\
+\
+	- React can read and present array element only by using \'93map()\'94. \
+\
+	
+\f0\b FAQ: What is difference between map() & forEach()?\
+	
+\f1\b0 Ans:   forEach() is void type and will not return data.\
+			   map() is an iterator that returns an array of elements. \
+			   \
+	Syntax:\
+				<ol>\
+					\{\
+						data.map (item =>  <li> \{ item \} </li> )\
+					\}\
+				</ol>\
+		\
+	   - Every repeating element in list must have a unique \'93key\'94 property. \
+		- Avoid using \'93index\'94 as key. It is not good according to programming \
+		  standards. \
+\
+				\{\
+				   data.map (item => <li key=\{item\}> \{item\} </li> )\
+				\}\
+\
+ Ex: data-binding.jsx\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  \{ useEffect, useState \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "react"\cf0 \cb1 \strokec4 \
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  DataBinding()\{\cb1 \
+\
+\cb3     \cb1 \
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [menuItems] = useState([\cf5 \strokec5 'Home'\cf0 \strokec4 , \cf5 \strokec5 'Sale'\cf0 \strokec4 , \cf5 \strokec5 'Shop'\cf0 \strokec4 , \cf5 \strokec5 'Contact'\cf0 \strokec4 , \cf5 \strokec5 'Services'\cf0 \strokec4 ]);\cb1 \
+\
+\cb3     useEffect(()\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\
+\cb3     \},[])\cb1 \
+\
+\
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf6 \strokec6 <div\cf0 \strokec4  \cf7 \cb3 \strokec7 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "container-fluid"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3            \cf6 \strokec6 <header\cf0 \strokec4  \cf7 \cb3 \strokec7 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "p-2 mt-2 align-items-center bg-light d-flex justify-content-between"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3                \cf6 \strokec6 <div>\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <span\cf0 \strokec4  \cf7 \cb3 \strokec7 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "bi bi-justify"\cf6 \strokec6 ></span>\cf0 \cb1 \strokec4 \
+\cb3                \cf6 \strokec6 <span\cf0 \strokec4  \cf7 \cb3 \strokec7 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "mx-2"\cf6 \strokec6 >\cf0 \strokec4 Amazon\cf6 \strokec6 </span>\cf0 \cb1 \strokec4 \
+\cb3                \cf6 \strokec6 </div>\cf0 \cb1 \strokec4 \
+\cb3                \cf6 \strokec6 <div>\cf0 \cb1 \strokec4 \
+\cb3                  \cf6 \strokec6 <div\cf0 \strokec4  \cf7 \cb3 \strokec7 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "input-group"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <input\cf0 \strokec4  \cf7 \cb3 \strokec7 type\cf0 \cb3 \strokec4 =\cf5 \strokec5 "text"\cf0 \strokec4  \cf7 \cb3 \strokec7 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "form-control"\cf0 \strokec4  \cf7 \cb3 \strokec7 placeholder\cf0 \cb3 \strokec4 =\cf5 \strokec5 "search amazon"\cf0 \strokec4  \cf6 \strokec6 />\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <button\cf0 \strokec4  \cf7 \cb3 \strokec7 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "btn btn-warning bi bi-search"\cf6 \strokec6 ></button>\cf0 \cb1 \strokec4 \
+\cb3                  \cf6 \strokec6 </div>\cf0 \cb1 \strokec4 \
+\cb3                \cf6 \strokec6 </div>\cf0 \cb1 \strokec4 \
+\cb3                \cf6 \strokec6 <nav>\cf0 \cb1 \strokec4 \
+\cb3                  \cf2 \strokec2 \{\cf0 \cb1 \strokec4 \
+\cb3                     menuItems.map(item\cf2 \strokec2 =>\cf0 \strokec4  \cf6 \strokec6 <span\cf0 \strokec4  \cf7 \cb3 \strokec7 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "mx-3"\cf0 \strokec4  \cf7 \cb3 \strokec7 key\cf0 \cb3 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 item\cf2 \strokec2 \}\cf6 \strokec6 >\cf2 \strokec2 \{\cf0 \strokec4 item\cf2 \strokec2 \}\cf6 \strokec6 </span>\cf0 \strokec4 )\cb1 \
+\cb3                  \cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                \cf6 \strokec6 </nav>\cf0 \cb1 \strokec4 \
+\cb3            \cf6 \strokec6 </header>\cf0 \cb1 \strokec4 \
+\cb3            \cf6 \strokec6 <section\cf0 \strokec4  \cf7 \cb3 \strokec7 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "mt-3"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3                \cf6 \strokec6 <ul\cf0 \strokec4  \cf7 \cb3 \strokec7 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "list-group w-25"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3                  \cf2 \strokec2 \{\cf0 \cb1 \strokec4 \
+\cb3                     menuItems.map(item \cf2 \strokec2 =>\cf0 \strokec4  \cf6 \strokec6 <li\cf0 \strokec4  \cf7 \cb3 \strokec7 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "list-group-item list-group-item-danger"\cf0 \strokec4  \cf7 \cb3 \strokec7 key\cf0 \cb3 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 item\cf2 \strokec2 \}\cf6 \strokec6 >\cf2 \strokec2 \{\cf0 \strokec4 item\cf2 \strokec2 \}\cf6 \strokec6 </li>\cf0 \strokec4 )\cb1 \
+\cb3                  \cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                \cf6 \strokec6 </ul>\cf0 \cb1 \strokec4 \
+\cb3                \cf6 \strokec6 <ul\cf0 \strokec4  \cf7 \cb3 \strokec7 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "list-unstyled ms-4"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3                   \cf2 \strokec2 \{\cf0 \cb1 \strokec4 \
+\cb3                      menuItems.map(item\cf2 \strokec2 =>\cf6 \strokec6 <li\cf0 \strokec4  \cf7 \cb3 \strokec7 key\cf0 \cb3 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 item\cf2 \strokec2 \}\cf6 \strokec6 >\cf0 \strokec4  \cf6 \strokec6 <input\cf0 \strokec4  \cf7 \cb3 \strokec7 type\cf0 \cb3 \strokec4 =\cf5 \strokec5 "checkbox"\cf0 \strokec4  \cf6 \strokec6 />\cf0 \strokec4  \cf6 \strokec6 <label>\cf2 \strokec2 \{\cf0 \strokec4 item\cf2 \strokec2 \}\cf6 \strokec6 </label>\cf0 \strokec4  \cf6 \strokec6 </li>\cf0 \strokec4 )\cb1 \
+\cb3                   \cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                \cf6 \strokec6 </ul>\cf0 \cb1 \strokec4 \
+\cb3            \cf6 \strokec6 </section>\cf0 \cb1 \strokec4 \
+\cb3         \cf6 \strokec6 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+			- All array manipulations are same as in JavaScript.\
+		\
+						pop()\
+						shift()\
+						splice()\
+						push()\
+						unshift()\
+						slice()		\
+						indexOf()\
+						sort()\
+						reverse() etc.\
+\
+	
+\f0\b Binding Object Type
+\f1\b0 \
+			- Object keeps all relative data and logic together.\
+			- Javascript object with data is considered as \'93JSON\'94. \
+			- It is a key and value collection. \
+			\
+		Syntax:\
+			const [product, setProduct] = useState( \{ id:1, name:\'94TV\'94, price: 45000 \} );\
+\
+			<p> \{ product.name \} </p>\
+\
+			- All object manipulations are same using following operators and methods\
+\
+					a) Reading all keys from object\
+					\
+								
+\f0\b Object.keys() \
+								for..in \
+\
+					
+\f1\b0 b) Deleting a Key\
+			\
+								
+\f0\b delete  object.key \
+	\
+					
+\f1\b0 c) Find a Key\
+\
+								
+\f0\b \'93key\'94  in  object   => returns true \
+\
+					
+\f1\b0 d) Hiding a key \
+	\
+								
+\f0\b Symbol  
+\f1\b0 data type\
+\
+Ex: data-binding.jsx\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  \{ useEffect, useState \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "react"\cf0 \cb1 \strokec4 \
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  DataBinding()\{\cb1 \
+\
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [product, setProduct] = useState(\{id:\cf8 \cb3 \strokec8 1\cf0 \cb3 \strokec4 , name:\cf5 \strokec5 'TV'\cf0 \strokec4 , price:\cf8 \cb3 \strokec8 45000\cf0 \cb3 \strokec4 , cities:[\cf5 \strokec5 'Delhi'\cf0 \strokec4 ,\cf5 \strokec5 'Hyd'\cf0 \strokec4 ], rating:\{rate:\cf8 \cb3 \strokec8 4.3\cf0 \cb3 \strokec4 , count:\cf8 \cb3 \strokec8 6000\cf0 \cb3 \strokec4 \}\});    \cb1 \
+\
+\cb3     useEffect(()\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\
+\cb3     \},[])\cb1 \
+\
+\
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf6 \strokec6 <div\cf0 \strokec4  \cf7 \cb3 \strokec7 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "container-fluid"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3            \cf6 \strokec6 <h4>\cf0 \strokec4 Product Details\cf6 \strokec6 </h4>\cf0 \cb1 \strokec4 \
+\cb3            \cf6 \strokec6 <dl\cf0 \strokec4  \cf7 \cb3 \strokec7 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "ms-4"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 <dt>\cf0 \strokec4 Product Id\cf6 \strokec6 </dt>\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 <dd>\cf2 \strokec2 \{\cf0 \strokec4 product.id\cf2 \strokec2 \}\cf6 \strokec6 </dd>\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 <dt>\cf0 \strokec4 Name\cf6 \strokec6 </dt>\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 <dd>\cf2 \strokec2 \{\cf0 \strokec4 product.name\cf2 \strokec2 \}\cf6 \strokec6 </dd>\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 <dt>\cf0 \strokec4 Price\cf6 \strokec6 </dt>\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 <dd>\cf2 \strokec2 \{\cf0 \strokec4 product.price.toLocaleString(\cf5 \strokec5 'en-in'\cf0 \strokec4 , \{style:\cf5 \strokec5 'currency'\cf0 \strokec4 , currency:\cf5 \strokec5 'INR'\cf0 \strokec4 \})\cf2 \strokec2 \}\cf6 \strokec6 </dd>\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 <dt>\cf0 \strokec4 Shipped To\cf6 \strokec6 </dt>\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 <dd>\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <ol>\cf0 \cb1 \strokec4 \
+\cb3                     \cf2 \strokec2 \{\cf0 \cb1 \strokec4 \
+\cb3                         product.cities.map(city\cf2 \strokec2 =>\cf0 \strokec4  \cf6 \strokec6 <li\cf0 \strokec4  \cf7 \cb3 \strokec7 key\cf0 \cb3 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 city\cf2 \strokec2 \}\cf6 \strokec6 >\cf2 \strokec2 \{\cf0 \strokec4 city\cf2 \strokec2 \}\cf6 \strokec6 </li>\cf0 \strokec4 )\cb1 \
+\cb3                     \cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 </ol>\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 </dd>\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 <dt>\cf0 \strokec4 Ratings\cf6 \strokec6 </dt>\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 <dd>\cf0 \cb1 \strokec4 \
+\cb3                  \cf2 \strokec2 \{\cf0 \strokec4 product.rating.rate\cf2 \strokec2 \}\cf0 \strokec4  \cf6 \strokec6 <span\cf0 \strokec4  \cf7 \cb3 \strokec7 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "bi bi-star-fill text-success"\cf6 \strokec6 ></span>\cf0 \cb1 \strokec4 \
+\cb3                  [\cf2 \strokec2 \{\cf0 \strokec4 product.rating.count\cf2 \strokec2 \}\cf0 \strokec4 ]\cb1 \
+\cb3             \cf6 \strokec6 </dd>\cf0 \cb1 \strokec4 \
+\cb3            \cf6 \strokec6 </dl>\cf0 \cb1 \strokec4 \
+\cb3         \cf6 \strokec6 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\
+		
+\f0\b Binding Array of Objects\
+			
+\f1\b0 - Array is a collection.\
+			- Array collection can have object type elements.\
+			- Every object is a key and value collection. \
+\
+		Syntax:\
+			const  [data] = useState( [ \{ key:value \}, \{ key:value \} ] )\
+\
+ Ex: data-binding.jsx\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  \{ useEffect, useState \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "react"\cf0 \cb1 \strokec4 \
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  DataBinding()\{\cb1 \
+\
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [products] = useState(\cb1 \
+\cb3         [\cb1 \
+\cb3             \{Id:\cf8 \cb3 \strokec8 1\cf0 \cb3 \strokec4 , Name: \cf5 \strokec5 "TV"\cf0 \strokec4 , Price: \cf8 \cb3 \strokec8 45000\cf0 \cb3 \strokec4 \},\cb1 \
+\cb3             \{Id:\cf8 \cb3 \strokec8 2\cf0 \cb3 \strokec4 , Name: \cf5 \strokec5 "Mobile"\cf0 \strokec4 , Price: \cf8 \cb3 \strokec8 12000\cf0 \cb3 \strokec4 \},\cb1 \
+\cb3             \{Id:\cf8 \cb3 \strokec8 3\cf0 \cb3 \strokec4 , Name: \cf5 \strokec5 "Watch"\cf0 \strokec4 , Price: \cf8 \cb3 \strokec8 3000\cf0 \cb3 \strokec4 \}\cb1 \
+\cb3         ]\cb1 \
+\cb3     )\cb1 \
+\cb3     useEffect(()\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\
+\cb3     \},[])\cb1 \
+\
+\
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf6 \strokec6 <div\cf0 \strokec4  \cf7 \cb3 \strokec7 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "container-fluid"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 <h3>\cf0 \strokec4 Products Table\cf6 \strokec6 </h3>\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 <table\cf0 \strokec4  \cf7 \cb3 \strokec7 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "table table-hover"\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <thead>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 <tr>\cf0 \cb1 \strokec4 \
+\cb3                         \cf6 \strokec6 <th>\cf0 \strokec4 Name \cf6 \strokec6 <span\cf0 \strokec4  \cf7 \cb3 \strokec7 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "bi bi-sort-alpha-down"\cf6 \strokec6 ></span>\cf0 \strokec4  \cf6 \strokec6 </th>\cf0 \cb1 \strokec4 \
+\cb3                         \cf6 \strokec6 <th>\cf0 \strokec4 Price \cf6 \strokec6 <span\cf0 \strokec4  \cf7 \cb3 \strokec7 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "bi bi-sort-alpha-down"\cf6 \strokec6 ></span>\cf0 \strokec4  \cf6 \strokec6 </th>\cf0 \cb1 \strokec4 \
+\cb3                         \cf6 \strokec6 <th>\cf0 \strokec4 Actions\cf6 \strokec6 </th>\cf0 \cb1 \strokec4 \
+\cb3                     \cf6 \strokec6 </tr>\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 </thead>\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 <tbody>\cf0 \cb1 \strokec4 \
+\cb3                     \cf2 \strokec2 \{\cf0 \cb1 \strokec4 \
+\cb3                         products.map(product\cf2 \strokec2 =>\cf0 \cb1 \strokec4 \
+\cb3                             \cf6 \strokec6 <tr\cf0 \strokec4  \cf7 \cb3 \strokec7 key\cf0 \cb3 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 product.Id\cf2 \strokec2 \}\cf6 \strokec6 >\cf0 \cb1 \strokec4 \
+\cb3                                 \cf6 \strokec6 <td>\cf2 \strokec2 \{\cf0 \strokec4 product.Name\cf2 \strokec2 \}\cf6 \strokec6 </td>\cf0 \cb1 \strokec4 \
+\cb3                                 \cf6 \strokec6 <td>\cf2 \strokec2 \{\cf0 \strokec4 product.Price\cf2 \strokec2 \}\cf6 \strokec6 </td>\cf0 \cb1 \strokec4 \
+\cb3                                 \cf6 \strokec6 <td>\cf0 \cb1 \strokec4 \
+\cb3                                     \cf6 \strokec6 <button\cf0 \strokec4  \cf7 \cb3 \strokec7 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "btn btn-warning bi bi-pen-fill"\cf6 \strokec6 ></button>\cf0 \cb1 \strokec4 \
+\cb3                                     \cf6 \strokec6 <button\cf0 \strokec4  \cf7 \cb3 \strokec7 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "btn btn-danger bi bi-trash-fill mx-2"\cf6 \strokec6 ></button>\cf0 \cb1 \strokec4 \
+\cb3                                 \cf6 \strokec6 </td>\cf0 \cb1 \strokec4 \
+\cb3                             \cf6 \strokec6 </tr>\cf0 \cb1 \strokec4 \
+\cb3                         )\cb1 \
+\cb3                     \cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                 \cf6 \strokec6 </tbody>\cf0 \cb1 \strokec4 \
+\cb3             \cf6 \strokec6 </table>\cf0 \cb1 \strokec4 \
+\cb3         \cf6 \strokec6 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}

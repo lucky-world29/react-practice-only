@@ -1,0 +1,353 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red255\green255\blue255;\red0\green0\blue0;
+\red144\green1\blue18;\red19\green118\blue70;\red107\green0\blue1;\red220\green0\blue5;\red9\green60\blue148;
+}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c100000;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;
+\cssrgb\c63922\c8235\c8235;\cssrgb\c3529\c52549\c34510;\cssrgb\c50196\c0\c0;\cssrgb\c89804\c0\c0;\cssrgb\c1569\c31765\c64706;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh14400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs70 \cf0  
+\f1\b Javascript Ajax methods in React:\
+	1. XMLHttpRequest\
+	\
+	Issues with XMLHttpRequest\
+	
+\f0\b0 - It synchronous by default.\
+	- You have to make it asynchronous explicitly. \
+	- It returns response in text format. \
+	- It requires explicit conversions. \
+	- It is not good in error handling. \
+	- It is not safe as it has issues with XSRF, CORS, XSS. \
+			\
+				Cross Site Request Forgery [XSRF]\
+				Cross Origin Resource Sharing [CORS]\
+				Cross Site Scripting Attacks [XSS]\
+	\
+	
+\f1\b 2. Javascript \'93fetch()\'94 API \
+		
+\f0\b0 - Fetch is promise based function\
+		- It is async by default.\
+		- It uses XMLHttpRequest object implicitly. \
+		- It is better in error handling.\
+		\
+		Syntax:\
+				fetch(\'93url\'94)\
+				.then(function(response)\{\
+				\}\
+				.catch(function(error)\{\
+			    \}\
+				.finally(function()\{\
+				\})\
+\
+		
+\f1\b Issues with Fetch:
+\f0\b0 \
+		- It is a DOM method.\
+		- It is not good directly for virtual DOM.\
+		- It returns every response in binary format.\
+		- Explicit conversions are required. \
+		- Binary conversions can be blocked by firewalls. \
+		- Not very good in security like CORS, XSRF, XSS etc.\
+		\
+  Ex: flipkart.jsx\
+\
+  
+\f2\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  \{ useEffect, useState \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "react"\cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  Flipkart()\{\cb1 \
+\
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [product, setProduct] = useState(\{title:\cf2 \strokec2 null\cf0 \strokec4 , price:\cf6 \cb3 \strokec6 0\cf0 \cb3 \strokec4 , image:\cf2 \strokec2 null\cf0 \strokec4 , rating:\{rate:\cf6 \cb3 \strokec6 0\cf0 \cb3 \strokec4 , ratings:\cf6 \cb3 \strokec6 0\cf0 \cb3 \strokec4 , reviews:\cf6 \cb3 \strokec6 0\cf0 \cb3 \strokec4 \}, offers:[]\});\cb1 \
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  LoadData()\{\cb1 \
+\cb3         fetch(\cf5 \strokec5 "product.json"\cf0 \strokec4 )\cb1 \
+\cb3         .then(\cf2 \strokec2 function\cf0 \strokec4 (response)\{\cb1 \
+\cb3             \cf2 \strokec2 return\cf0 \strokec4  response.json();\cb1 \
+\cb3         \})\cb1 \
+\cb3         .then(\cf2 \strokec2 function\cf0 \strokec4 (product)\{\cb1 \
+\cb3             setProduct(product);\cb1 \
+\cb3         \})\cb1 \
+\cb3     \}\cb1 \
+\cb3     useEffect(()\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\cb3         LoadData();\cb1 \
+\cb3     \},[])\cb1 \
+\
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "container-fluid"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3           \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "mt-4"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3              \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "row"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "col-3"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \cb3 \strokec7 <img\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 width\cf0 \cb3 \strokec4 =\cf5 \strokec5 "100%"\cf0 \strokec4  \cf8 \cb3 \strokec8 src\cf0 \cb3 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 product.image\cf2 \strokec2 \}\cf0 \strokec4  \cf7 \cb3 \strokec7 />\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "col-9"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "fs-5"\cf7 \cb3 \strokec7 >\cf2 \cb3 \strokec2 \{\cf0 \strokec4 product.title\cf2 \strokec2 \}\cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "mt-2"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \cb3 \strokec7 <span\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "badge bg-success text-white rounded"\cf7 \cb3 \strokec7 >\cf2 \cb3 \strokec2 \{\cf0 \strokec4 product.rating.rate\cf2 \strokec2 \}\cf0 \strokec4  \cf7 \cb3 \strokec7 <span\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "bi bi-star-fill"\cf7 \cb3 \strokec7 ></span>\cf0 \cb3 \strokec4  \cf7 \cb3 \strokec7 </span>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \cb3 \strokec7 <span\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "mx-2 text-secondary fw-bold"\cf7 \cb3 \strokec7 >\cf0 \cb3 \strokec4  \cf2 \strokec2 \{\cf0 \strokec4 product.rating.ratings.toLocaleString(\cf5 \strokec5 'en-in'\cf0 \strokec4 )\cf2 \strokec2 \}\cf0 \strokec4  ratings & \cf2 \strokec2 \{\cf0 \strokec4 product.rating.reviews.toLocaleString(\cf5 \strokec5 'en-in'\cf0 \strokec4 )\cf2 \strokec2 \}\cf0 \strokec4  reviews \cf7 \cb3 \strokec7 </span>\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "mt-3 fs-2 fw-bold"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                         \cf2 \strokec2 \{\cf0 \strokec4 product.price.toLocaleString(\cf5 \strokec5 'en-in'\cf0 \strokec4 ,\{style:\cf5 \strokec5 'currency'\cf0 \strokec4 , currency:\cf5 \strokec5 'INR'\cf0 \strokec4 , minimumFractionDigits:\cf6 \cb3 \strokec6 0\cf0 \cb3 \strokec4 , maximumFractionDigits:\cf6 \cb3 \strokec6 0\cf0 \cb3 \strokec4 \})\cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "mt-3"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \cb3 \strokec7 <h5>\cf0 \cb3 \strokec4 Available Offers\cf7 \cb3 \strokec7 </h5>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \cb3 \strokec7 <ul\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "list-unstyled"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                             \cf2 \strokec2 \{\cf0 \cb1 \strokec4 \
+\cb3                                 product.offers.map(offer\cf2 \strokec2 =>\cf0 \cb1 \strokec4 \
+\cb3                                     \cf7 \cb3 \strokec7 <li\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "bi bi-tag-fill text-success my-4"\cf0 \strokec4  \cf8 \cb3 \strokec8 key\cf0 \cb3 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 offer\cf2 \strokec2 \}\cf7 \cb3 \strokec7 ><span\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "text-secondary"\cf7 \cb3 \strokec7 >\cf2 \cb3 \strokec2 \{\cf0 \strokec4 offer\cf2 \strokec2 \}\cf7 \cb3 \strokec7 </span></li>\cf0 \cb1 \strokec4 \
+\cb3                                 )\cb1 \
+\cb3                             \cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \cb3 \strokec7 </ul>\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3              \cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3           \cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3         \cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+	
+\f1\b React 3rd Party libraries for handling AJAX requests\
+	
+\f0\b0 - React can use various 3rd party libraries for handling AJAX requests.\
+		a) axios\
+		b) whatwg-fetch\
+		c) jQuery Ajax [jquery - native] etc.\
+\
+	
+\f1\b Axios for React:\
+	
+\f0\b0 	- It uses XMLHttpRequest.\
+		- It is a virtual DOM library. \
+		- It is a promise based library.\
+		- It is async by default. \
+		- It returns data in native format. \
+		- Explicit conversions not required. \
+		- It is good in error handling.\
+		- It is good in security like CORS, XSRF, XSS etc.\
+		- It can cancel requests. \
+		- It can handle multiple requests simultaneously at the same time. \
+\
+					https://npmjs.com/
+\f1\b \
+\
+		
+\f0\b0 1. Install axios for your project\
+\
+					> npm install  axios  --save\
+\
+		2. Import axios into component \
+\
+					import   axios   from \'93axios\'94;\
+\
+		3. Configure axios request\
+			\
+					axios.get()\
+					axios.post()\
+					axios.put()\
+					axios.patch()\
+					axios.delete() etc..\
+	\
+		 Syntax:\
+					axios.get(\'93url\'94).\
+							then(function(response)\{\
+									response.data, status, statusCode etc.\
+							\})
+\f1\b \
+							
+\f0\b0 .catch(function(error)\{\
+				\
+							\})
+\f1\b \
+							
+\f0\b0 .finally(function()\{\
+\
+							\})
+\f1\b \
+\
+
+\f0\b0  Ex: flipkart.jsx\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  \{ useEffect, useState \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "react"\cf0 \cb1 \strokec4 \
+\cf2 \cb3 \strokec2 import\cf0 \strokec4  axios \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "axios"\cf0 \strokec4 ;\cb1 \
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  Flipkart()\{\cb1 \
+\
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [product, setProduct] = useState(\{title:\cf2 \strokec2 null\cf0 \strokec4 , price:\cf6 \cb3 \strokec6 0\cf0 \cb3 \strokec4 , image:\cf2 \strokec2 null\cf0 \strokec4 , rating:\{rate:\cf6 \cb3 \strokec6 0\cf0 \cb3 \strokec4 , ratings:\cf6 \cb3 \strokec6 0\cf0 \cb3 \strokec4 , reviews:\cf6 \cb3 \strokec6 0\cf0 \cb3 \strokec4 \}, offers:[]\});\cb1 \
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  LoadData()\{\cb1 \
+\cb3         axios.get(\cf5 \strokec5 'product.json'\cf0 \strokec4 )\cb1 \
+\cb3         .then(response\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\cb3             setProduct(response.data);\cb1 \
+\cb3             console.log(response.status);\cb1 \
+\cb3         \})\cb1 \
+\cb3         .catch(error\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\cb3             console.log(error);\cb1 \
+\cb3         \})\cb1 \
+\cb3         .finally(()\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\cb3             console.log(\cf5 \strokec5 'Request End'\cf0 \strokec4 );\cb1 \
+\cb3         \})\cb1 \
+\cb3     \}\cb1 \
+\cb3     useEffect(()\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\cb3         LoadData();\cb1 \
+\cb3     \},[])\cb1 \
+\
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "container-fluid"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3           \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "mt-4"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3              \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "row"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "col-3"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \cb3 \strokec7 <img\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 width\cf0 \cb3 \strokec4 =\cf5 \strokec5 "100%"\cf0 \strokec4  \cf8 \cb3 \strokec8 src\cf0 \cb3 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 product.image\cf2 \strokec2 \}\cf0 \strokec4  \cf7 \cb3 \strokec7 />\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "col-9"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "fs-5"\cf7 \cb3 \strokec7 >\cf2 \cb3 \strokec2 \{\cf0 \strokec4 product.title\cf2 \strokec2 \}\cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "mt-2"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \cb3 \strokec7 <span\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "badge bg-success text-white rounded"\cf7 \cb3 \strokec7 >\cf2 \cb3 \strokec2 \{\cf0 \strokec4 product.rating.rate\cf2 \strokec2 \}\cf0 \strokec4  \cf7 \cb3 \strokec7 <span\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "bi bi-star-fill"\cf7 \cb3 \strokec7 ></span>\cf0 \cb3 \strokec4  \cf7 \cb3 \strokec7 </span>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \cb3 \strokec7 <span\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "mx-2 text-secondary fw-bold"\cf7 \cb3 \strokec7 >\cf0 \cb3 \strokec4  \cf2 \strokec2 \{\cf0 \strokec4 product.rating.ratings.toLocaleString(\cf5 \strokec5 'en-in'\cf0 \strokec4 )\cf2 \strokec2 \}\cf0 \strokec4  ratings & \cf2 \strokec2 \{\cf0 \strokec4 product.rating.reviews.toLocaleString(\cf5 \strokec5 'en-in'\cf0 \strokec4 )\cf2 \strokec2 \}\cf0 \strokec4  reviews \cf7 \cb3 \strokec7 </span>\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "mt-3 fs-2 fw-bold"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                         \cf2 \strokec2 \{\cf0 \strokec4 product.price.toLocaleString(\cf5 \strokec5 'en-in'\cf0 \strokec4 ,\{style:\cf5 \strokec5 'currency'\cf0 \strokec4 , currency:\cf5 \strokec5 'INR'\cf0 \strokec4 , minimumFractionDigits:\cf6 \cb3 \strokec6 0\cf0 \cb3 \strokec4 , maximumFractionDigits:\cf6 \cb3 \strokec6 0\cf0 \cb3 \strokec4 \})\cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "mt-3"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \cb3 \strokec7 <h5>\cf0 \cb3 \strokec4 Available Offers\cf7 \cb3 \strokec7 </h5>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \cb3 \strokec7 <ul\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "list-unstyled"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                             \cf2 \strokec2 \{\cf0 \cb1 \strokec4 \
+\cb3                                 product.offers.map(offer\cf2 \strokec2 =>\cf0 \cb1 \strokec4 \
+\cb3                                     \cf7 \cb3 \strokec7 <li\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "bi bi-tag-fill text-success my-4"\cf0 \strokec4  \cf8 \cb3 \strokec8 key\cf0 \cb3 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 offer\cf2 \strokec2 \}\cf7 \cb3 \strokec7 ><span\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "text-secondary"\cf7 \cb3 \strokec7 >\cf2 \cb3 \strokec2 \{\cf0 \strokec4 offer\cf2 \strokec2 \}\cf7 \cb3 \strokec7 </span></li>\cf0 \cb1 \strokec4 \
+\cb3                                 )\cb1 \
+\cb3                             \cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \cb3 \strokec7 </ul>\cf0 \cb1 \strokec4 \
+\cb3                     \cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3              \cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3           \cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3         \cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\b\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+Ex:\
+	
+\f0\b0 1. Public/movies.json\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs46 \cf0 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 [\cb1 \
+\cb3     \{\cb1 \
+\cb3         \cf9 \cb3 \strokec9 "title"\cf0 \cb3 \strokec4 : \cf5 \strokec5 "DHURANDHAR"\cf0 \strokec4 ,\cb1 \
+\cb3         \cf9 \cb3 \strokec9 "poster"\cf0 \cb3 \strokec4 : \cf5 \strokec5 "m1.png"\cf0 \strokec4 ,\cb1 \
+\cb3         \cf9 \cb3 \strokec9 "language"\cf0 \cb3 \strokec4 : \cf5 \strokec5 "Hindi"\cf0 \strokec4 ,\cb1 \
+\cb3         \cf9 \cb3 \strokec9 "certificate"\cf0 \cb3 \strokec4 : \cf5 \strokec5 "A"\cf0 \cb1 \strokec4 \
+\cb3     \},\cb1 \
+\cb3     \{\cb1 \
+\cb3         \cf9 \cb3 \strokec9 "title"\cf0 \cb3 \strokec4 : \cf5 \strokec5 "IKKIS"\cf0 \strokec4 ,\cb1 \
+\cb3         \cf9 \cb3 \strokec9 "poster"\cf0 \cb3 \strokec4 : \cf5 \strokec5 "m2.png"\cf0 \strokec4 ,\cb1 \
+\cb3         \cf9 \cb3 \strokec9 "language"\cf0 \cb3 \strokec4 : \cf5 \strokec5 "Hindi"\cf0 \strokec4 ,\cb1 \
+\cb3         \cf9 \cb3 \strokec9 "certificate"\cf0 \cb3 \strokec4 : \cf5 \strokec5 "UA 13+"\cf0 \cb1 \strokec4 \
+\cb3     \},\cb1 \
+\cb3     \{\cb1 \
+\cb3         \cf9 \cb3 \strokec9 "title"\cf0 \cb3 \strokec4 : \cf5 \strokec5 "THE SPONGEBOB MOVIE"\cf0 \strokec4 ,\cb1 \
+\cb3         \cf9 \cb3 \strokec9 "poster"\cf0 \cb3 \strokec4 : \cf5 \strokec5 "m3.png"\cf0 \strokec4 ,\cb1 \
+\cb3         \cf9 \cb3 \strokec9 "language"\cf0 \cb3 \strokec4 : \cf5 \strokec5 "English"\cf0 \strokec4 ,\cb1 \
+\cb3         \cf9 \cb3 \strokec9 "certificate"\cf0 \cb3 \strokec4 : \cf5 \strokec5 "UA 7+"\cf0 \cb1 \strokec4 \
+\cb3     \},\cb1 \
+\cb3    \{\cb1 \
+\cb3         \cf9 \cb3 \strokec9 "title"\cf0 \cb3 \strokec4 : \cf5 \strokec5 "THE HOUSEMAID"\cf0 \strokec4 ,\cb1 \
+\cb3         \cf9 \cb3 \strokec9 "poster"\cf0 \cb3 \strokec4 : \cf5 \strokec5 "m4.png"\cf0 \strokec4 ,\cb1 \
+\cb3         \cf9 \cb3 \strokec9 "language"\cf0 \cb3 \strokec4 : \cf5 \strokec5 "English"\cf0 \strokec4 ,\cb1 \
+\cb3         \cf9 \cb3 \strokec9 "certificate"\cf0 \cb3 \strokec4 : \cf5 \strokec5 "A"\cf0 \cb1 \strokec4 \
+\cb3     \},\cb1 \
+\cb3     \{\cb1 \
+\cb3         \cf9 \cb3 \strokec9 "title"\cf0 \cb3 \strokec4 : \cf5 \strokec5 "AVATAR : FIRE & ASH"\cf0 \strokec4 ,\cb1 \
+\cb3         \cf9 \cb3 \strokec9 "poster"\cf0 \cb3 \strokec4 : \cf5 \strokec5 "m5.png"\cf0 \strokec4 ,\cb1 \
+\cb3         \cf9 \cb3 \strokec9 "language"\cf0 \cb3 \strokec4 : \cf5 \strokec5 "English"\cf0 \strokec4 ,\cb1 \
+\cb3         \cf9 \cb3 \strokec9 "certificate"\cf0 \cb3 \strokec4 : \cf5 \strokec5 "UA 15+"\cf0 \cb1 \strokec4 \
+\cb3     \}\cb1 \
+\cb3     \cb1 \
+\cb3 ]\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\b\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+	2. Components/inox/inox.jsx\
+\
+
+\f2\b0\fs46 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 import\cf0 \strokec4  axios \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "axios"\cf0 \strokec4 ;\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 import\cf0 \strokec4  \{ useEffect, useState \} \cf2 \strokec2 from\cf0 \strokec4  \cf5 \strokec5 "react"\cf0 \cb1 \strokec4 \
+\
+\cf2 \cb3 \strokec2 export\cf0 \strokec4  \cf2 \strokec2 function\cf0 \strokec4  Inox()\{\cb1 \
+\
+\cb3     \cf2 \strokec2 const\cf0 \strokec4  [movies, setMovies] = useState([\{title:\cf2 \strokec2 null\cf0 \strokec4 , poster:\cf2 \strokec2 null\cf0 \strokec4 , language:\cf2 \strokec2 null\cf0 \strokec4 , certificate:\cf2 \strokec2 null\cf0 \strokec4 \}]);\cb1 \
+\
+\cb3     \cf2 \strokec2 function\cf0 \strokec4  LoadMovies()\{\cb1 \
+\cb3         axios.get(\cf5 \strokec5 'movies.json'\cf0 \strokec4 )\cb1 \
+\cb3         .then(response\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\cb3             setMovies(response.data);\cb1 \
+\cb3         \})\cb1 \
+\cb3     \}\cb1 \
+\
+\cb3     useEffect(()\cf2 \strokec2 =>\cf0 \strokec4 \{\cb1 \
+\cb3         LoadMovies();\cb1 \
+\cb3     \},[])\cb1 \
+\
+\cb3     \cf2 \strokec2 return\cf0 \strokec4 (\cb1 \
+\cb3         \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "container-fluid p-3"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3             \cf7 \cb3 \strokec7 <header>\cf0 \cb1 \strokec4 \
+\cb3                 \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "text-center fw-bold fs-4"\cf7 \cb3 \strokec7 >\cf0 \cb3 \strokec4 Inox Movies\cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3             \cf7 \cb3 \strokec7 </header>\cf0 \cb1 \strokec4 \
+\cb3             \cf7 \cb3 \strokec7 <section\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "mt-3 d-flex flex-row"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                 \cf2 \strokec2 \{\cf0 \cb1 \strokec4 \
+\cb3                     movies.map(movie\cf2 \strokec2 =>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 key\cf0 \cb3 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 movie.title\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "card m-2 p-2 w-25"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \cb3 \strokec7 <img\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 src\cf0 \cb3 \strokec4 =\cf2 \strokec2 \{\cf0 \strokec4 movie.poster\cf2 \strokec2 \}\cf0 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "card-img-top"\cf0 \strokec4  \cf8 \cb3 \strokec8 height\cf0 \cb3 \strokec4 =\cf5 \strokec5 "200"\cf7 \cb3 \strokec7 />\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "card-header text-center fw-bold"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                                 \cf2 \strokec2 \{\cf0 \strokec4 movie.title\cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "card-body"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                                \cf7 \cb3 \strokec7 <dl>\cf0 \cb1 \strokec4 \
+\cb3                                 \cf7 \cb3 \strokec7 <dt>\cf0 \cb3 \strokec4 Language\cf7 \cb3 \strokec7 </dt>\cf0 \cb1 \strokec4 \
+\cb3                                 \cf7 \cb3 \strokec7 <dd>\cf2 \cb3 \strokec2 \{\cf0 \strokec4 movie.language\cf2 \strokec2 \}\cf7 \cb3 \strokec7 </dd>\cf0 \cb1 \strokec4 \
+\cb3                                 \cf7 \cb3 \strokec7 <dt>\cf0 \cb3 \strokec4 Certificate\cf7 \cb3 \strokec7 </dt>\cf0 \cb1 \strokec4 \
+\cb3                                 \cf7 \cb3 \strokec7 <dd>\cf2 \cb3 \strokec2 \{\cf0 \strokec4 movie.certificate\cf2 \strokec2 \}\cf7 \cb3 \strokec7 </dd>\cf0 \cb1 \strokec4 \
+\cb3                                \cf7 \cb3 \strokec7 </dl>\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \cb3 \strokec7 <div\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "card-footer"\cf7 \cb3 \strokec7 >\cf0 \cb1 \strokec4 \
+\cb3                                 \cf7 \cb3 \strokec7 <button\cf0 \cb3 \strokec4  \cf8 \cb3 \strokec8 className\cf0 \cb3 \strokec4 =\cf5 \strokec5 "btn btn-warning w-100"\cf7 \cb3 \strokec7 >\cf0 \cb3 \strokec4  Book Ticket \cf7 \cb3 \strokec7 </button>\cf0 \cb1 \strokec4 \
+\cb3                             \cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3                         \cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\
+\cb3                     )\cb1 \
+\cb3                 \cf2 \strokec2 \}\cf0 \cb1 \strokec4 \
+\cb3             \cf7 \cb3 \strokec7 </section>\cf0 \cb1 \strokec4 \
+\cb3         \cf7 \cb3 \strokec7 </div>\cf0 \cb1 \strokec4 \
+\cb3     )\cb1 \
+\cb3 \}\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\b\fs70 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\
+
+\f0\b0 \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}

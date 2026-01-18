@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        header{
+            display: flex;
+            justify-content: space-around;
+            background-color: rgb(6, 6, 6);
+            color: white;
+            padding: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: xx-large;
+            font-weight: bold;
+        }
+        header span:hover{
+            color: orange;
+            cursor: pointer;
+        }
+    </style>
+    <title>Demo  </title>
+    <script src="../node_modules/react/umd/react.development.js"></script>
+    <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="../node_modules/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        function Header(){
+            return(
+                <header>
+                    <span>Home</span>
+                    <span>About</span>
+                    <span>Contact</span>
+                    <span>Logo</span>
+                </header>
+            )
+        }
+
+        function Login() {
+            return (
+                <form>
+                    <h3>User Login</h3>
+                    <dl>
+                        <dt>Username:</dt>
+                        <dd><input type="text" name="username" /></dd>
+                        <dt>Password:</dt>
+                        <dd><input type="password" name="password" /></dd>
+                    </dl>
+                </form>
+            );
+        }
+        //
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<section><Header/><Login/></section>);
+
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>

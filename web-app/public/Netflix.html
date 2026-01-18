@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix</title>
+
+    <!-- Custom Style -->
+    <style>
+        body {
+            background-image: url("netflix-banner.jpg");
+            background-size: cover;
+            margin: 0;
+        }
+
+        .shade {
+            background-color: rgba(0, 0, 0, 0.6);
+            height: 100vh;
+        }
+
+        main {
+            padding-top: 100px;
+        }
+    </style>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <!-- Bootstrap JS -->
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+    <!-- React Libraries -->
+    <script src="../node_modules/react/umd/react.development.js"></script>
+    <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="../node_modules/@babel/standalone/babel.min.js"></script>
+
+    <!-- React Code -->
+    <script type="text/babel">
+        function NetflixHeader() {
+            return (
+                <header className="d-flex justify-content-between p-4 text-white">
+                    <div className="fs-1 fw-bold text-danger">NETFLIX</div>
+
+                    <div className="d-flex align-items-center">
+                        <div className="input-group">
+                            <span className="input-group-text">
+                                <span className="bi bi-translate"></span>
+                            </span>
+                            <select className="form-select">
+                                <option>English</option>
+                                <option>Hindi</option>
+                            </select>
+                        </div>
+
+                        <button className="btn btn-danger mx-3">Sign In</button>
+                    </div>
+                </header>
+            );
+        }
+
+        function NetflixRegister() {
+            return (
+                <form className="mt-4">
+                    <div className="my-3">
+                        Ready to watch? Enter your email to create or restart your membership.
+                    </div>
+
+                    <div className="d-flex justify-content-center">
+                        <div className="input-group input-group-lg w-50">
+                            <input
+                                type="email"
+                                className="form-control"
+                                placeholder="Email address"
+                            />
+                            <button className="btn btn-danger">
+                                Get Started <span className="bi bi-chevron-right"></span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            );
+        }
+
+        function NetflixMain() {
+            return (
+                <main className="text-center text-white">
+                    <div className="fs-1 fw-bold">
+                        Unlimited movies, TV shows and more
+                    </div>
+
+                    <div className="fs-5 mt-3">
+                        Starts at ₹149. Cancel at any time.
+                    </div>
+
+                    <NetflixRegister />
+                </main>
+            );
+        }
+
+        function NetflixIndex() {
+            return (
+                <div className="shade">
+                    <NetflixHeader />
+                    <NetflixMain />
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<NetflixIndex />);
+    </script>
+</head>
+
+<body>
+    <noscript>Please enable JavaScript in your browser.</noscript>
+    <div id="root"></div>
+</body>
+
+</html>
+
+
+<!-- 2200 mark 1100 theory and 1100 practical -->
